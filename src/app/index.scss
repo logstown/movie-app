@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
 html {
-    font-family: 'Roboto Slab', serif;
+  font-family: 'Roboto Slab', serif;
 }
 
 // [layout=row] {
@@ -17,3 +17,19 @@ html {
 
 // injector
 // endinjector
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 10px;
+}
+
+.timeline-label {
+  font-family: sans-serif;
+  font-size: 12px;
+}

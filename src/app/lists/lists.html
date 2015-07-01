@@ -1,0 +1,13 @@
+<div layout="row" layout-margin>
+  <md-content class="md-padding">
+    <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="addToList()" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.name" md-min-length="2">
+      <span md-highlight-text="searchText">{{item.name}}</span>
+    </md-autocomplete>
+  </md-content>
+</div>
+<div layout="row" layout-wrap as-sortable="sortableOptions" ng-model="list">
+  <div flex="10" flex-sm="20" ng-repeat="item in list" as-sortable-item>
+    <img ng-src="{{imageUrl + item.poster_path}}" alt="">
+    <div style="text-align:center;" as-sortable-item-handle>{{item.name}}</div>
+  </div>
+</div>
