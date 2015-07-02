@@ -7,7 +7,13 @@
 </div>
 <div layout="row" layout-wrap as-sortable="sortableOptions" ng-model="list">
   <div flex="10" flex-sm="20" ng-repeat="item in list" as-sortable-item>
-    <img ng-src="{{imageUrl + item.poster_path}}" alt="">
-    <div style="text-align:center;" as-sortable-item-handle>{{item.name}}</div>
+    <!-- <i ng-show="showClose" class="fa fa-lg fa-times-circle-o" style="float: right; margin-bottom: -16px; cursor:pointer; color: white;" ng-mouseenter="showClose = true"></i> -->
+    <div as-sortable-item-handle class="movie-image">
+      <img ng-src="{{imageUrl + item.poster_path}}" alt="">
+      <md-tooltip md-direction="top">{{item.name}}</md-tooltip>
+    </div>
+    <div style="text-align: center;">
+      {{$index + 1}}
+    </div>
   </div>
 </div>

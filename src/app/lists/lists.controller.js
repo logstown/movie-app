@@ -15,6 +15,9 @@ angular.module('movieApp')
             //restrict move across columns. move only within column.
             accept: function(sourceItemHandleScope, destSortableScope) {
                 return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+            },
+            orderChanged: function(e) {
+                console.log(_.pluck($scope.list, 'name'));
             }
         };
 
@@ -39,6 +42,8 @@ angular.module('movieApp')
 
             previousId = $scope.selectedItem.id;
             $scope.list.push($scope.selectedItem)
+            console.log('here')
+            $scope.searchText = '';
         }
 
     });
