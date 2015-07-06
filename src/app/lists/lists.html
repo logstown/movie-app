@@ -1,13 +1,21 @@
 <div layout="row" layout-margin>
-  <md-content class="md-padding">
-    <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="addToList()" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.name" md-min-length="2">
-      <span md-highlight-text="searchText">{{item.name}}</span>
-    </md-autocomplete>
-  </md-content>
+  <div flex="20">
+    <md-content class="md-padding">
+      <!-- <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="addToList()" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.name" md-min-length="2">
+        <span md-highlight-text="searchText">{{item.name}}</span>
+      </md-autocomplete> -->
+      <md-input-container>
+        <label>Add Show</label>
+        <input type="text" ng-model="searchTerm" ng-keyup="maybeSearch($event)">
+      </md-input-container>
+    </md-content>
+  </div>
+  <div flex="80">
+    <img ng-repeat="poss in possibilities" ng-src="{{thumbUrl + poss.poster_path}}" ng-click="addFromThumbs(poss)">
+  </div>
 </div>
-<div layout="row" layout-wrap as-sortable="sortableOptions" ng-model="list">
+<!-- <div layout="row" layout-wrap as-sortable="sortableOptions" ng-model="list">
   <div flex="10" flex-sm="20" ng-repeat="item in list" as-sortable-item>
-    <!-- <i ng-show="showClose" class="fa fa-lg fa-times-circle-o" style="float: right; margin-bottom: -16px; cursor:pointer; color: white;" ng-mouseenter="showClose = true"></i> -->
     <div as-sortable-item-handle class="movie-image">
       <img ng-src="{{imageUrl + item.poster_path}}" alt="">
       <md-tooltip md-direction="top">{{item.name}}</md-tooltip>
@@ -16,4 +24,31 @@
       {{$index + 1}}
     </div>
   </div>
-</div>
+  <div flex="10" flex-sm="20">
+    <div class="add-movie">
+      <i class="fa fa-plus-square fa-3x"></i>
+    </div>
+  </div>
+</div> -->
+<table>
+  <tr class="list" as-sortable="sortableOptions" ng-model="list">
+    <td ng-repeat="item in list" as-sortable-item style="display: table-cell;">
+      <div as-sortable-item-handle>
+        <img class="movie-image" ng-src="{{imageUrl + item.poster_path}}" alt="">
+        <md-tooltip md-direction="top">{{item.name}}</md-tooltip>
+      </div>
+      <div style="text-align: center;" ng-class="{'invisible': item.dragging}">
+        {{$index + 1}}
+      </div>
+      <i class="fa fa-times-circle"></i>
+    </td>
+    <!-- <td>
+      <div class="add-movie">
+        <i class="fa fa-plus fa-2x"></i>
+      </div>
+      <div style="visibility: hidden;">
+        1
+      </div>
+    </td> -->
+  </tr>
+</table>

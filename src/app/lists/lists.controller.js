@@ -8,6 +8,7 @@ angular.module('movieApp')
             .then(function(result) {
                 console.log(result)
                 $scope.imageUrl = result.images.base_url + 'w342'
+                $scope.thumbUrl = result.images.base_url + 'w92';
             });
 
         $scope.sortableOptions = {
@@ -18,6 +19,10 @@ angular.module('movieApp')
             },
             orderChanged: function(e) {
                 console.log(_.pluck($scope.list, 'name'));
+            },
+            dragStart: function(node) {
+                console.log(node)
+                node.dragging = true;
             }
         };
 
@@ -44,6 +49,25 @@ angular.module('movieApp')
             $scope.list.push($scope.selectedItem)
             console.log('here')
             $scope.searchText = '';
+        }
+
+        $scope.addFromThumbs = function(entity) {
+            console.log(entity)
+            $scope.list.push(entity);
+            $scope.searchTerm = '';
+            $scope.possibilities = [];
+        }
+
+        $scope.maybeSearch = function(event) {
+            if (event.which === 13) {
+                $scope.addFromThumbs($scope.possibilities[0])
+            } else if ($scope.searchTerm && $scope.searchTerm.length > 1) {
+                $scope.getMatches($scope.searchTerm)
+                    .then(function(results) {
+                        $scope.possibilities = _.filter(results, 'poster_path')
+                        console.log($scope.possibilities)
+                    })
+            }
         }
 
     });

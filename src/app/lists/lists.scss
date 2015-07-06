@@ -1,5 +1,25 @@
-.movie-image {
-  &:hover {
-    border: 2px solid blue;
+.list {
+  &:focus {
+    outline: none;
   }
+  .movie-image {
+    border: 5px solid white;
+    &:hover {
+      border: 5px solid lightblue;
+    }
+  }
+}
+
+.add-movie {
+  width: 352px;
+  max-height: 523px;
+  display: table-cell;
+  text-align: center;
+  border: 5px solid lightblue;
+  padding-top: 65%;
+  padding-bottom: 65%;
+}
+
+.invisible {
+  visibility: hidden;
 }
