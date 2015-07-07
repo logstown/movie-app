@@ -1,25 +1,50 @@
 .list {
-  &:focus {
-    outline: none;
-  }
-  .movie-image {
+    &:focus {
+        outline: none;
+    }
+    .movie-image {
+        border: 5px solid white;
+        &:hover {
+            border: 5px solid lightblue;
+        }
+    }
+    .entity-remove-icon {
+        visibility: hidden;
+        cursor: pointer;
+        font-size: 200%;
+    }
+    .visible {
+        visibility: visible !important;
+    }
+}
+
+.movie-image {
     border: 5px solid white;
     &:hover {
-      border: 5px solid lightblue;
+        border: 5px solid lightblue;
     }
-  }
+}
+
+.entity-remove-icon {
+    visibility: hidden;
+    cursor: pointer;
+    font-size: 3vmin;
+}
+
+.visible {
+    visibility: visible !important;
 }
 
 .add-movie {
-  width: 352px;
-  max-height: 523px;
-  display: table-cell;
-  text-align: center;
-  border: 5px solid lightblue;
-  padding-top: 65%;
-  padding-bottom: 65%;
+    width: 352px;
+    max-height: 523px;
+    display: table-cell;
+    text-align: center;
+    border: 5px solid lightblue;
+    padding-top: 65%;
+    padding-bottom: 65%;
 }
 
 .invisible {
-  visibility: hidden;
+    visibility: hidden;
 }
