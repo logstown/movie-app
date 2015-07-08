@@ -1,4 +1,5 @@
 .list {
+    margin: 20px;
     &:focus {
         outline: none;
     }
@@ -20,23 +21,6 @@
     .visible {
         visibility: visible !important;
     }
-}
-
-.movie-image {
-    border: 5px solid white;
-    &:hover {
-        border: 5px solid lightblue;
-    }
-}
-
-.entity-remove-icon {
-    visibility: hidden;
-    cursor: pointer;
-    font-size: 3vmin;
-}
-
-.visible {
-    visibility: visible !important;
 }
 
 .add-movie {

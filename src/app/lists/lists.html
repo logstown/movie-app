@@ -1,48 +1,32 @@
-<div class="list" layout="row" layout-wrap layout-align="start center" as-sortable="sortableOptions" ng-model="list">
-  <div flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33" ng-repeat="item in list" as-sortable-item ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
-    <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(item)"></i>
-    <div as-sortable-item-handle>
-      <img class="movie-image" ng-src="{{imageUrl + item.poster_path}}" alt="">
-      <md-tooltip md-direction="bottom" md-delay="100">{{item.name}}</md-tooltip>
-    </div>
-    <div style="text-align: center;" ng-class="{'invisible': item.dragging || hovered}">
-      <span class="md-caption">{{$index + 1}}</span>
+<div ng-repeat="list in lists">
+  <div class="list" layout="row" layout-wrap layout-align="start center" as-sortable="sortableOptions" ng-model="list.list">
+    <div flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33" ng-repeat="item in list.list" as-sortable-item ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
+      <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(list,item)"></i>
+      <div as-sortable-item-handle>
+        <img class="movie-image" ng-src="{{imageUrl + item.poster_path}}" alt="">
+        <md-tooltip md-direction="bottom" md-delay="100">{{item.name}}</md-tooltip>
+      </div>
+      <div style="text-align: center;" ng-class="{'invisible': item.dragging || hovered}">
+        <span class="md-caption">{{$index + 1}}</span>
+      </div>
     </div>
   </div>
-</div>
-<div>
   <div layout="row">
     <div flex="50" offset="25">
       <md-content class="md-padding">
-        <!-- <md-autocomplete md-selected-item="selectedItem" md-selected-item-change="addToList()" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.name" md-min-length="2">
-        <span md-highlight-text="searchText">{{item.name}}</span>
-      </md-autocomplete> -->
         <md-input-container>
           <label>Add Show</label>
-          <input type="text" ng-model="searchTerm" ng-keyup="maybeSearch($event)">
+          <input type="text" ng-model="list.searchTerm" ng-keyup="maybeSearch($event, list)">
         </md-input-container>
       </md-content>
     </div>
   </div>
   <div layout="row" layout-wrap layout-align="center center">
     <div ng-repeat="poss in possibilities">
-      <img class="movie-image" style="cursor: pointer;" ng-src="{{thumbUrl + poss.poster_path}}" ng-click="addFromThumbs(poss)">
+      <img class="movie-image" style="cursor: pointer;" ng-src="{{thumbUrl + poss.poster_path}}" ng-click="addFromThumbs(list, poss)">
     </div>
   </div>
 </div>
-<!-- <table>
-    <tr class="list" as-sortable="sortableOptions" ng-model="list">
-        <td ng-repeat="item in list" as-sortable-item style="display: table-cell;" ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
-            <div style="text-align:right;">
-                <i class="fa fa-trash entity-remove-icon" ng-class="{'visible': hovered}" ng-click="deleteItem(item)"></i>
-            </div>
-            <div as-sortable-item-handle>
-                <img class="movie-image" ng-src="{{imageUrl + item.poster_path}}" alt="">
-                <md-tooltip md-direction="top">{{item.name}}</md-tooltip>
-            </div>
-            <div style="text-align: center;" ng-class="{'invisible': item.dragging}">
-                {{$index + 1}}
-            </div>
-        </td>
-    </tr>
-</table> -->
+<div>
+  <md-button ng-click="addList()">Add List</md-button>
+</div>

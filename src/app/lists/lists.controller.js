@@ -2,7 +2,7 @@
 
 angular.module('movieApp')
 	.controller('ListsCtrl', function($scope, $q, $mdBottomSheet, movieApiService) {
-		$scope.list = [];
+		$scope.lists = [];
 
 		movieApiService.get('configuration')
 			.then(function(result) {
@@ -57,22 +57,24 @@ angular.module('movieApp')
 			$scope.searchText = '';
 		}
 
-		$scope.addFromThumbs = function(entity) {
-			$scope.list.push(entity);
-			$scope.searchTerm = '';
+		$scope.addFromThumbs = function(list, entity) {
+			list.list.push(entity);
+			list.searchTerm = '';
 			$scope.possibilities = [];
 		}
 
-		$scope.maybeSearch = function(event) {
+		$scope.maybeSearch = function(event, list) {
+			console.log(list)
 			if (event.which === 13) {
-				$scope.addFromThumbs($scope.possibilities[0])
-			} else if ($scope.searchTerm && $scope.searchTerm.length > 1) {
-				$scope.getMatches($scope.searchTerm)
+				$scope.addFromThumbs(list, $scope.possibilities[0])
+			} else if (list.searchTerm && list.searchTerm.length > 1) {
+				$scope.getMatches(list.searchTerm)
 					.then(function(results) {
+						console.log(results)
 						$scope.possibilities = _.chain(results)
 							.filter('poster_path')
 							.reject(function(match) {
-								return _.some($scope.list, {
+								return _.some(list.list, {
 									id: match.id
 								});
 							})
@@ -81,7 +83,14 @@ angular.module('movieApp')
 			}
 		}
 
-		$scope.deleteItem = function(item) {
-			_.remove($scope.list, item)
+		$scope.deleteItem = function(list, item) {
+			_.remove(list.list, item)
+		}
+
+		$scope.addList = function() {
+			$scope.lists.push({
+				title: '',
+				list: []
+			})
 		}
 	});
