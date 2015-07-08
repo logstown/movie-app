@@ -8,10 +8,14 @@
             border: 5px solid lightblue;
         }
     }
-    .entity-remove-icon {
-        visibility: hidden;
+    .entity-remove {
+        float: right;
+        margin-bottom: -15px;
+        color: darkred;
         cursor: pointer;
-        font-size: 200%;
+        &:hover {
+            color: red;
+        }
     }
     .visible {
         visibility: visible !important;
