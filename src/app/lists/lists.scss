@@ -1,37 +1,46 @@
 .list {
-  &:focus {
-    outline: none;
-  }
-  .movie-image {
-    border: 5px solid white;
-    &:hover {
-      border: 5px solid lightblue;
+    &:focus {
+        outline: none;
     }
-  }
-  .entity-remove {
-    float: right;
-    margin-bottom: -15px;
-    color: darkred;
-    cursor: pointer;
-    &:hover {
-      color: red;
+    .movie-image {
+        border: 5px solid white;
+        &:hover {
+            border: 5px solid lightblue;
+        }
     }
-  }
-  .visible {
-    visibility: visible !important;
-  }
+    .entity-remove {
+        float: right;
+        margin-bottom: -15px;
+        color: darkred;
+        cursor: pointer;
+        &:hover {
+            color: red;
+        }
+    }
+    .visible {
+        visibility: visible !important;
+    }
 }
 
 .add-entity {
-  cursor: pointer;
-  img {
-    border: 5px solid lightblue;
-  }
-  &:focus {
-    outline: none;
-  }
+    cursor: pointer;
+    img {
+        border: 5px solid lightblue;
+    }
+    &:focus {
+        outline: none;
+    }
 }
 
 .invisible {
-  visibility: hidden;
+    visibility: hidden;
+}
+
+.non-hovered {
+    // padding: 5px;
+    transition: padding .25s;
+}
+
+.hovered {
+    // padding: 0;
 }

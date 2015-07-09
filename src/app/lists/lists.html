@@ -1,8 +1,8 @@
-<div ng-repeat="list in lists">
+<!-- <div ng-repeat="list in lists">
   <h3 class="md-title" ng-click="list.editTitle = true" ng-hide="list.editTitle">{{list.title}}</h3>
-  <!-- <md-input-container> -->
-  <input style="margin:0;" type="text" ng-model="list.title" ng-show="list.editTitle" ng-blur="list.editTitle=false">
-  <!-- </md-input-container> -->
+  <md-input-container>
+    <input style="margin:0;" type="text" ng-model="list.title" ng-show="list.editTitle" ng-blur="list.editTitle=false">
+  </md-input-container>
   <div class="list" layout="row" layout-wrap layout-align="start center" as-sortable="sortableOptions" ng-model="list.list">
     <div flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33" ng-repeat="item in list.list" as-sortable-item ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
       <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(list,item)"></i>
@@ -46,4 +46,15 @@
 </div>
 <div>
   <md-button class="md-raised" ng-click="addList()">Add List</md-button>
-</div>
+</div> -->
+<section ng-repeat="group in tileGroups" ng-mouseleave="hovered=false" ng-style="{'border-top': '4px solid '+ group.color}" as-sortable="sortableOptions" ng-model="dude">
+  <h3 class="md-title" style="float:left; z-index:3; position:relative; background-color: white;">List time</h3 class="md-title">
+  <md-grid-list ng-mouseenter="hovered=true" md-cols="{{getCols(group.list.length)}}" md-row-height="2:3" md-gutter="{{group.gutter}}">
+    <!-- <md-grid-tile md-colspan="2" md-rowspan="2">
+    <img src="http://image.tmdb.org/t/p/w342/7MDOr1WUHPuPGOzShKa2ZH5ZEHy.jpg" alt="">
+  </md-grid-tile> -->
+    <md-grid-tile as-sortable-item ng-repeat="tile in group.list">
+          <img as-sortable-item-handle class="non-hovered" ng-class="{'hovered': hovered}" src="http://image.tmdb.org/t/p/w500/7MDOr1WUHPuPGOzShKa2ZH5ZEHy.jpg" alt="">
+        </md-grid-tile>
+  </md-grid-list>
+</section>
