@@ -1,4 +1,8 @@
 <div ng-repeat="list in lists">
+  <h3 class="md-title" ng-click="list.editTitle = true" ng-hide="list.editTitle">{{list.title}}</h3>
+  <!-- <md-input-container> -->
+  <input style="margin:0;" type="text" ng-model="list.title" ng-show="list.editTitle" ng-blur="list.editTitle=false">
+  <!-- </md-input-container> -->
   <div class="list" layout="row" layout-wrap layout-align="start center" as-sortable="sortableOptions" ng-model="list.list">
     <div flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33" ng-repeat="item in list.list" as-sortable-item ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
       <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(list,item)"></i>
@@ -10,23 +14,36 @@
         <span class="md-caption">{{$index + 1}}</span>
       </div>
     </div>
-  </div>
-  <div layout="row">
-    <div flex="50" offset="25">
-      <md-content class="md-padding">
-        <md-input-container>
-          <label>Add Show</label>
-          <input type="text" ng-model="list.searchTerm" ng-keyup="maybeSearch($event, list)">
-        </md-input-container>
-      </md-content>
+    <div ng-if="list.edit" class="add-entity" flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33">
+      <img src="assets/images/add.png" alt="">
+      <div style="text-align: center;" class="invisible">
+        <span class="md-caption">1</span>
+      </div>
     </div>
   </div>
-  <div layout="row" layout-wrap layout-align="center center">
-    <div ng-repeat="poss in possibilities">
-      <img class="movie-image" style="cursor: pointer;" ng-src="{{thumbUrl + poss.poster_path}}" ng-click="addFromThumbs(list, poss)">
+  <div ng-if="list.edit">
+    <div layout="row" layout-align="space-around center">
+      <div>
+        <md-content>
+          <md-input-container>
+            <label>Add Show</label>
+            <input style="margin:0;" type="text" ng-model="actions.searchTerm" ng-keyup="maybeSearch($event, list)">
+          </md-input-container>
+        </md-content>
+      </div>
+      <div>
+        <md-content>
+          <md-button class="md-raised" ng-click="list.edit=false">Done</md-button>
+        </md-content>
+      </div>
+    </div>
+    <div layout="row" layout-wrap layout-align="center center">
+      <div ng-repeat="poss in possibilities">
+        <img class="movie-image" style="cursor: pointer;" ng-src="{{thumbUrl + poss.poster_path}}" ng-click="addFromThumbs(list, poss)">
+      </div>
     </div>
   </div>
 </div>
 <div>
-  <md-button ng-click="addList()">Add List</md-button>
+  <md-button class="md-raised" ng-click="addList()">Add List</md-button>
 </div>

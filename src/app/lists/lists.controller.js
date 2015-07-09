@@ -3,6 +3,9 @@
 angular.module('movieApp')
 	.controller('ListsCtrl', function($scope, $q, $mdBottomSheet, movieApiService) {
 		$scope.lists = [];
+		$scope.actions = {
+			searchTerm: ''
+		}
 
 		movieApiService.get('configuration')
 			.then(function(result) {
@@ -59,16 +62,16 @@ angular.module('movieApp')
 
 		$scope.addFromThumbs = function(list, entity) {
 			list.list.push(entity);
-			list.searchTerm = '';
+			$scope.actions.searchTerm = '';
 			$scope.possibilities = [];
 		}
 
 		$scope.maybeSearch = function(event, list) {
-			console.log(list)
+			console.log($scope.actions.searchTerm)
 			if (event.which === 13) {
 				$scope.addFromThumbs(list, $scope.possibilities[0])
-			} else if (list.searchTerm && list.searchTerm.length > 1) {
-				$scope.getMatches(list.searchTerm)
+			} else if ($scope.actions.searchTerm && $scope.actions.searchTerm.length > 1) {
+				$scope.getMatches($scope.actions.searchTerm)
 					.then(function(results) {
 						console.log(results)
 						$scope.possibilities = _.chain(results)
@@ -89,8 +92,9 @@ angular.module('movieApp')
 
 		$scope.addList = function() {
 			$scope.lists.push({
-				title: '',
-				list: []
+				title: 'Cool List',
+				list: [],
+				edit: true
 			})
 		}
 	});

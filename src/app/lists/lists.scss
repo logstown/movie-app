@@ -1,38 +1,37 @@
 .list {
-    margin: 20px;
-    &:focus {
-        outline: none;
+  &:focus {
+    outline: none;
+  }
+  .movie-image {
+    border: 5px solid white;
+    &:hover {
+      border: 5px solid lightblue;
     }
-    .movie-image {
-        border: 5px solid white;
-        &:hover {
-            border: 5px solid lightblue;
-        }
+  }
+  .entity-remove {
+    float: right;
+    margin-bottom: -15px;
+    color: darkred;
+    cursor: pointer;
+    &:hover {
+      color: red;
     }
-    .entity-remove {
-        float: right;
-        margin-bottom: -15px;
-        color: darkred;
-        cursor: pointer;
-        &:hover {
-            color: red;
-        }
-    }
-    .visible {
-        visibility: visible !important;
-    }
+  }
+  .visible {
+    visibility: visible !important;
+  }
 }
 
-.add-movie {
-    width: 352px;
-    max-height: 523px;
-    display: table-cell;
-    text-align: center;
+.add-entity {
+  cursor: pointer;
+  img {
     border: 5px solid lightblue;
-    padding-top: 65%;
-    padding-bottom: 65%;
+  }
+  &:focus {
+    outline: none;
+  }
 }
 
 .invisible {
-    visibility: hidden;
+  visibility: hidden;
 }

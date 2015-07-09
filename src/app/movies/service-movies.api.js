@@ -12,7 +12,8 @@ angular.module('movieApp')
             params.api_key = API_KEY;
 
             return $http.get(fullUrl, {
-                params: params
+                params: params,
+                cache: true
             }).then(function(result) {
                 return result.data;
             })
