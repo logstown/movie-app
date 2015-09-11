@@ -47,14 +47,14 @@
 <div>
   <md-button class="md-raised" ng-click="addList()">Add List</md-button>
 </div> -->
-<section ng-repeat="group in tileGroups" ng-mouseleave="hovered=false" ng-style="{'border-top': '4px solid '+ group.color}" as-sortable="sortableOptions" ng-model="dude">
+<section ng-repeat="group in tileGroups" ng-mouseleave="hovered=false" ng-style="{'border-top': '4px solid '+ group.color}" style="margin-bottom: 10px;" as-sortable="sortableOptions" ng-model="dude">
   <h3 class="md-title" style="float:left; z-index:3; position:relative; background-color: white;">List time</h3 class="md-title">
   <md-grid-list ng-mouseenter="hovered=true" md-cols="{{getCols(group.list.length)}}" md-row-height="2:3" md-gutter="{{group.gutter}}">
     <!-- <md-grid-tile md-colspan="2" md-rowspan="2">
     <img src="http://image.tmdb.org/t/p/w342/7MDOr1WUHPuPGOzShKa2ZH5ZEHy.jpg" alt="">
   </md-grid-tile> -->
     <md-grid-tile as-sortable-item ng-repeat="tile in group.list">
-          <img as-sortable-item-handle class="non-hovered" ng-class="{'hovered': hovered}" src="http://image.tmdb.org/t/p/w500/7MDOr1WUHPuPGOzShKa2ZH5ZEHy.jpg" alt="">
+          <img as-sortable-item-handle class="non-hovered" ng-class="{'hovered': hovered}" ng-src="http://image.tmdb.org/t/p/w500/{{tile.poster_path}}" alt="">
         </md-grid-tile>
   </md-grid-list>
 </section>
