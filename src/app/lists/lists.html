@@ -5,21 +5,21 @@
   <!-- </md-input-container> -->
   <div class="list" layout="row" layout-wrap layout-align="start center" as-sortable="sortableOptions" ng-model="list.list">
     <div flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33" ng-repeat="item in list.list" as-sortable-item ng-mouseenter="hovered=true" ng-mouseleave="hovered=false">
-      <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(list,item)"></i>
+      <!-- <i class="fa fa-times-circle-o fa-lg entity-remove" ng-show="hovered" ng-click="deleteItem(list,item)"></i> -->
       <div as-sortable-item-handle>
         <img class="movie-image" ng-src="{{imageUrl + item.poster_path}}" alt="">
-        <md-tooltip md-direction="bottom" md-delay="100">{{item.name}}</md-tooltip>
       </div>
-      <div style="text-align: center;" ng-class="{'invisible': item.dragging || hovered}">
+      <div style="text-align: center;" ng-class="{'invisible': item.dragging}">
         <span class="md-caption">{{$index + 1}}</span>
       </div>
+      <md-tooltip md-direction="bottom" md-delay="100">{{item.name}}</md-tooltip>
     </div>
-    <div ng-if="list.edit" class="add-entity" flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33">
+    <!-- <div ng-if="list.edit" class="add-entity" flex-gt-lg="10" flex-lg="15" flex-md="20" flex-sm="33">
       <img src="assets/images/add.png" alt="">
       <div style="text-align: center;" class="invisible">
         <span class="md-caption">1</span>
       </div>
-    </div>
+    </div> -->
   </div>
   <div ng-if="list.edit">
     <div layout="row" layout-align="space-around center">

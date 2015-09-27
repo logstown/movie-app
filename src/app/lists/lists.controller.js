@@ -18,16 +18,17 @@ angular.module('movieApp')
 			containment: '#sortable-container',
 			//restrict move across columns. move only within column.
 			accept: function(sourceItemHandleScope, destSortableScope) {
-				console.log([sourceItemHandleScope, destSortableScope])
+				// console.log([sourceItemHandleScope, destSortableScope])
 				return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
 			},
 			orderChanged: function(e) {
-				console.log(_.pluck($scope.list, 'name'));
+				// console.log(_.pluck($scope.list, 'name'));
 			},
 			itemMoved: function(node) {
-				console.log(node)
+				// console.log(node)
 			},
 			dragStart: function(node, thing) {
+				console.log([node, thing])
 				$scope.dragging = true;
 				node.source.itemScope.modelValue.dragging = true;
 			},
@@ -36,6 +37,32 @@ angular.module('movieApp')
 				node.source.itemScope.modelValue.dragging = false;
 			}
 		};
+
+		$scope.sortableOptions2 = {
+			containment: '#sortable-container2',
+			//restrict move across columns. move only within column.
+			accept: function(sourceItemHandleScope, destSortableScope) {
+				// console.log([sourceItemHandleScope, destSortableScope])
+				return sourceItemHandleScope.itemScope.sortableScope.$id === destSortableScope.$id;
+			},
+			orderChanged: function(e) {
+				// console.log(_.pluck($scope.list, 'name'));
+			},
+			itemMoved: function(node) {
+				// console.log(node)
+			},
+			dragStart: function(node, thing) {
+				console.log([node, thing])
+				$scope.dragging = true;
+				node.source.itemScope.modelValue.dragging = true;
+			},
+			dragEnd: function(node) {
+				$scope.dragging = false;
+				node.source.itemScope.modelValue.dragging = false;
+			}
+		};
+
+		$scope.trash = [1];
 
 		$scope.getMatches = function(text) {
 			var params = {
@@ -67,13 +94,11 @@ angular.module('movieApp')
 		}
 
 		$scope.maybeSearch = function(event, list) {
-			console.log($scope.actions.searchTerm)
 			if (event.which === 13) {
 				$scope.addFromThumbs(list, $scope.possibilities[0])
 			} else if ($scope.actions.searchTerm && $scope.actions.searchTerm.length > 1) {
 				$scope.getMatches($scope.actions.searchTerm)
 					.then(function(results) {
-						console.log(results)
 						$scope.possibilities = _.chain(results)
 							.filter('poster_path')
 							.reject(function(match) {
